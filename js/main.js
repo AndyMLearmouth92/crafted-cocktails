@@ -9,20 +9,20 @@
         for(let i = 0; i < data.drinks.length; i++){
             setTimeout(function(){
                 console.log(data.drinks[i])
-      document.querySelector('h2').innerText = data.drinks[i].strDrink
-      document.querySelector('img').src = data.drinks[i].strDrinkThumb
-      document.querySelector('h3').innerText = data.drinks[i].strInstructions
-      document.querySelector('#Ingredient1').innerHTML = data.drinks[i].strIngredient1
-      document.querySelector("#Ingredient2").innerHTML = data.drinks[i].strIngredient2
-      document.querySelector("#Ingredient3").innerHTML = data.drinks[i].strIngredient3
-      document.querySelector("#Ingredient4").innerHTML = data.drinks[i].strIngredient4
-      document.querySelector("#Ingredient5").innerHTML = data.drinks[i].strIngredient5
-      document.querySelector("#Ingredient6").innerHTML = data.drinks[i].strIngredient6
-      document.querySelector("#Ingredient7").innerHTML = data.drinks[i].strIngredient7
-      document.querySelector("#Ingredient8").innerHTML = data.drinks[i].strIngredient8
-      document.querySelector('h5').innerHTML = data.drinks[i].strIBA
-            }, 3000 * i);
-        }})
+            document.querySelector('h2').innerText = data.drinks[i].strDrink
+            document.querySelector('img').src = data.drinks[i].strDrinkThumb
+            document.querySelector('h3').innerText = data.drinks[i].strInstructions
+            document.querySelector('#Ingredient1').innerHTML = data.drinks[i].strIngredient1
+            document.querySelector("#Ingredient2").innerHTML = data.drinks[i].strIngredient2
+            document.querySelector("#Ingredient3").innerHTML = data.drinks[i].strIngredient3
+            document.querySelector("#Ingredient4").innerHTML = data.drinks[i].strIngredient4
+            document.querySelector("#Ingredient5").innerHTML = data.drinks[i].strIngredient5
+            document.querySelector("#Ingredient6").innerHTML = data.drinks[i].strIngredient6
+            document.querySelector("#Ingredient7").innerHTML = data.drinks[i].strIngredient7
+            document.querySelector("#Ingredient8").innerHTML = data.drinks[i].strIngredient8
+            document.querySelector('h5').innerHTML = data.drinks[i].strIBA
+                    }, 3000 * i);
+                }})
     .catch(err => {
         console.log(`error ${err}`)
     })}
