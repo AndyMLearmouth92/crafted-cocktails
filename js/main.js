@@ -45,7 +45,6 @@ document.querySelector('#button2').addEventListener('click', randomDrink)
             document.querySelector("#Ingredient6").innerHTML = data.drinks[0].strIngredient6
             document.querySelector("#Ingredient7").innerHTML = data.drinks[0].strIngredient7
             document.querySelector("#Ingredient8").innerHTML = data.drinks[0].strIngredient8
-            document.querySelector('h5').innerHTML = data.drinks[i].strIBA
         })
         .catch(err => {
             console.log(`error ${err}`)
