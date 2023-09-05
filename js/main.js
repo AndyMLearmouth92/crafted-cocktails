@@ -6,31 +6,32 @@ function getDrink() {
     .then((res) => res.json()) // parse response as JSON
     .then((data) => {
       for (let i = 0; i < data.drinks.length; i++) {
-        setTimeout(function () {
-          console.log(data.drinks[i]);
-          document.querySelector("#drink-name").innerText =
-            data.drinks[i].strDrink;
-          document.querySelector("img").src = data.drinks[i].strDrinkThumb;
-          document.querySelector("h3").innerText =
-            data.drinks[i].strInstructions;
-          document.querySelector("#Ingredient1").innerHTML =
-            data.drinks[i].strIngredient1;
-          document.querySelector("#Ingredient2").innerHTML =
-            data.drinks[i].strIngredient2;
-          document.querySelector("#Ingredient3").innerHTML =
-            data.drinks[i].strIngredient3;
-          document.querySelector("#Ingredient4").innerHTML =
-            data.drinks[i].strIngredient4;
-          document.querySelector("#Ingredient5").innerHTML =
-            data.drinks[i].strIngredient5;
-          document.querySelector("#Ingredient6").innerHTML =
-            data.drinks[i].strIngredient6;
-          document.querySelector("#Ingredient7").innerHTML =
-            data.drinks[i].strIngredient7;
-          document.querySelector("#Ingredient8").innerHTML =
-            data.drinks[i].strIngredient8;
-          document.querySelector("h5").innerHTML = data.drinks[i].strIBA;
-        }, 3000 * i);
+        console.log(data.drinks[i]);
+        document.querySelector("#drink-name").innerText =
+          data.drinks[i].strDrink;
+        document.querySelector("img").src = data.drinks[i].strDrinkThumb;
+        document.querySelector("#instructions").innerText =
+          data.drinks[0].strInstructions;
+
+        // pulling out ingredients
+        for (j = 1; j < 16; j++) {
+          if (data.drinks[i][`strIngredient${j}`]) {
+            let ingredient = document.createElement("li");
+            ingredient.innerText = data.drinks[i][`strIngredient${j}`];
+            document.querySelector(".ingredients").appendChild(ingredient);
+          }
+        }
+
+        // Pulling out measures
+        for (k = 1; k < 15; k++) {
+          if (data.drinks[i][`strMeasure${k}`]) {
+            let measure = document.createElement("li");
+            measure.innerText = data.drinks[i][`strMeasure${k}`];
+            document.querySelector(".measures").appendChild(measure);
+          }
+        }
+
+        document.querySelector("h5").innerHTML = data.drinks[i].strIBA;
       }
     })
     .catch((err) => {
@@ -40,30 +41,6 @@ function getDrink() {
 
 document.querySelector("#button2").addEventListener("click", randomDrink);
 
-function numOfIngredients(drinkName) {
-  let i = 0;
-  for (i = 1; i < 16; i++) {
-    let ingredient = document.createElement("li");
-    ingredient.innerText = drinkName[`strIngredient${i}`];
-
-    if (ingredient.innerText !== "") {
-      document.querySelector(".ingredients").appendChild(ingredient);
-    }
-  }
-}
-
-function getMeasures(drinkName) {
-  let i = 0;
-  for (i = 1; i < 15; i++) {
-    let measurement = document.createElement("li");
-    measurement.innerText = drinkName[`strMeasure${i}`];
-
-    if (measurement.innerText !== "") {
-      document.querySelector(".measurements").appendChild(measurement);
-    }
-  }
-}
-
 function randomDrink() {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
     .then((res) => res.json()) // parse response as JSON
@@ -71,7 +48,8 @@ function randomDrink() {
       console.log(data.drinks[0]);
       document.querySelector("#drink-name").innerText = data.drinks[0].strDrink;
       document.querySelector("img").src = data.drinks[0].strDrinkThumb;
-      document.querySelector("h3").innerText = data.drinks[0].strInstructions;
+      document.querySelector("#instructions").innerText =
+        data.drinks[0].strInstructions;
       document.querySelector("#Ingredient1").innerHTML =
         data.drinks[0].strIngredient1;
       document.querySelector("#Ingredient2").innerHTML =
