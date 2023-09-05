@@ -3,14 +3,18 @@
 /*******************************************/
 
 /* Box Model Hack */
-*{
+* {
   box-sizing: border-box;
+}
+
+body {
+  background-image: url("../img/bar.jpg");
 }
 
 /******************************************
 /* LAYOUT
 /*******************************************/
-img{
+img {
   display: block;
   margin: 0 auto;
 }
@@ -18,7 +22,6 @@ img{
 ul {
   list-style-type: none;
 }
-
 
 /******************************************
 /* ADDITIONAL STYLES
