@@ -1,4 +1,7 @@
-document.querySelector("button").addEventListener("click", getDrink);
+document.querySelector("button").addEventListener("click", () => {
+  getDrink();
+  removeIngredients();
+});
 
 function getDrink() {
   let drink = document.querySelector("input").value;
@@ -14,11 +17,42 @@ function getDrink() {
         document.querySelector("img").src = data.drinks[i].strDrinkThumb;
         document.querySelector("#instructions").innerText =
           data.drinks[0].strInstructions;
+        document.querySelector("h5").innerHTML = data.drinks[i].strIBA;
 
         extractIngredients(data.drinks[i]);
         extractMeasures(data.drinks[i]);
 
-        document.querySelector("h5").innerHTML = data.drinks[i].strIBA;
+        let count = 0;
+
+        function nextDrink(count) {
+          let i = count;
+          extractIngredients(data.drinks[i]);
+          extractMeasures(data.drinks[i]);
+          document.querySelector("#drink-name").innerText =
+            data.drinks[i].strDrink.toUpperCase();
+          document.querySelector("img").src = data.drinks[i].strDrinkThumb;
+          document.querySelector("#instructions").innerText =
+            data.drinks[i].strInstructions;
+          data.drinks[++i];
+
+          if (i === data.drinks.length) {
+            i = 0;
+          }
+        }
+
+        document.querySelectorAll("#nextDrink").forEach((item) => {
+          item.addEventListener("click", () => {
+            if (count === data.drinks.length - 1) {
+              count = 0;
+              removeIngredients();
+              nextDrink(count);
+            } else {
+              ++count;
+              removeIngredients();
+              nextDrink(count);
+            }
+          });
+        });
       }
     })
     .catch((err) => {
@@ -29,6 +63,7 @@ function getDrink() {
 document.querySelector("#button2").addEventListener("click", randomDrink);
 
 function randomDrink() {
+  removeIngredients();
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
     .then((res) => res.json()) // parse response as JSON
     .then((data) => {
@@ -37,22 +72,10 @@ function randomDrink() {
       document.querySelector("img").src = data.drinks[0].strDrinkThumb;
       document.querySelector("#instructions").innerText =
         data.drinks[0].strInstructions;
-      document.querySelector("#Ingredient1").innerHTML =
-        data.drinks[0].strIngredient1;
-      document.querySelector("#Ingredient2").innerHTML =
-        data.drinks[0].strIngredient2;
-      document.querySelector("#Ingredient3").innerHTML =
-        data.drinks[0].strIngredient3;
-      document.querySelector("#Ingredient4").innerHTML =
-        data.drinks[0].strIngredient4;
-      document.querySelector("#Ingredient5").innerHTML =
-        data.drinks[0].strIngredient5;
-      document.querySelector("#Ingredient6").innerHTML =
-        data.drinks[0].strIngredient6;
-      document.querySelector("#Ingredient7").innerHTML =
-        data.drinks[0].strIngredient7;
-      document.querySelector("#Ingredient8").innerHTML =
-        data.drinks[0].strIngredient8;
+      document.querySelector("#drink-name-instructions").innerText =
+        data.drinks[0].strDrink;
+      extractIngredients(data.drinks[0]);
+      extractMeasures(data.drinks[0]);
     })
     .catch((err) => {
       console.log(`error ${err}`);
@@ -80,3 +103,9 @@ const extractMeasures = (drink) => {
     }
   }
 };
+
+// Removes ingredients and measures
+function removeIngredients() {
+  document.querySelector(".ingredients").innerText = "";
+  document.querySelector(".measures").innerText = "";
+}
