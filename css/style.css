@@ -147,6 +147,15 @@ a:hover {
   height: auto;
 }
 
+.instructions-container {
+  text-align: left;
+  padding-left: 55px;
+  padding-right: 50px;
+}
+
+#drink-name-instructions {
+  display: inline-block;
+}
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/

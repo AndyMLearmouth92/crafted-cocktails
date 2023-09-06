@@ -9,6 +9,8 @@ function getDrink() {
         console.log(data.drinks[i]);
         document.querySelector("#drink-name").innerText =
           data.drinks[i].strDrink;
+        document.querySelector("#drink-name-instructions").innerText =
+          data.drinks[i].strDrink;
         document.querySelector("img").src = data.drinks[i].strDrinkThumb;
         document.querySelector("#instructions").innerText =
           data.drinks[0].strInstructions;
