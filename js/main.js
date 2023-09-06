@@ -15,23 +15,8 @@ function getDrink() {
         document.querySelector("#instructions").innerText =
           data.drinks[0].strInstructions;
 
-        // pulling out ingredients
-        for (j = 1; j < 16; j++) {
-          if (data.drinks[i][`strIngredient${j}`]) {
-            let ingredient = document.createElement("li");
-            ingredient.innerText = data.drinks[i][`strIngredient${j}`];
-            document.querySelector(".ingredients").appendChild(ingredient);
-          }
-        }
-
-        // Pulling out measures
-        for (k = 1; k < 15; k++) {
-          if (data.drinks[i][`strMeasure${k}`]) {
-            let measure = document.createElement("li");
-            measure.innerText = data.drinks[i][`strMeasure${k}`];
-            document.querySelector(".measures").appendChild(measure);
-          }
-        }
+        extractIngredients(data.drinks[i]);
+        extractMeasures(data.drinks[i]);
 
         document.querySelector("h5").innerHTML = data.drinks[i].strIBA;
       }
@@ -73,3 +58,25 @@ function randomDrink() {
       console.log(`error ${err}`);
     });
 }
+
+// pulling out ingredients
+const extractIngredients = (drink) => {
+  for (i = 1; i < 16; i++) {
+    if (drink[`strIngredient${i}`]) {
+      let ingredient = document.createElement("li");
+      ingredient.innerText = drink[`strIngredient${i}`];
+      document.querySelector(".ingredients").appendChild(ingredient);
+    }
+  }
+};
+
+// Pulling out measures
+const extractMeasures = (drink) => {
+  for (i = 1; i < 15; i++) {
+    if (drink[`strMeasure${i}`]) {
+      let measure = document.createElement("li");
+      measure.innerText = drink[`strMeasure${i}`];
+      document.querySelector(".measures").appendChild(measure);
+    }
+  }
+};
