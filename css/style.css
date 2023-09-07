@@ -178,7 +178,8 @@ button {
 }
 
 #button:hover,
-#button2:hover {
+#button2:hover,
+.button:hover {
   background-color: black;
   color: white;
   transition-duration: 0.4s;

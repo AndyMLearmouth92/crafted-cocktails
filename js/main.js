@@ -1,4 +1,4 @@
-document.querySelector("button").addEventListener("click", () => {
+document.querySelector("#button").addEventListener("click", () => {
   removeIngredients();
   getDrink();
 });
