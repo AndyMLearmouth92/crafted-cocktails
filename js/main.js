@@ -1,6 +1,6 @@
 document.querySelector("button").addEventListener("click", () => {
+  removeIngredients();
   getDrink();
-  //   removeIngredients();
 });
 
 function getDrink() {
