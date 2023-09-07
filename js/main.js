@@ -18,6 +18,7 @@ function getDrink() {
 
       extractIngredients(data.drinks[0]);
       extractMeasures(data.drinks[0]);
+      showResults();
 
       let count = 0;
 
@@ -85,6 +86,7 @@ function randomDrink() {
         data.drinks[0].strDrink;
       extractIngredients(data.drinks[0]);
       extractMeasures(data.drinks[0]);
+      showResults();
     })
     .catch((err) => {
       console.log(`error ${err}`);
@@ -118,3 +120,10 @@ function removeIngredients() {
   document.querySelector(".ingredients").innerText = "";
   document.querySelector(".measures").innerText = "";
 }
+
+// show hidden classes which is drink and ingredients
+const showResults = () => {
+  document
+    .querySelector(".drink-ingredient-container")
+    .classList.remove("hidden");
+};
