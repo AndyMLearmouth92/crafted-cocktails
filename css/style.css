@@ -10,8 +10,9 @@
 }
 
 body {
-  background-image: url("../img/bar.jpg");
+  background: url("../img/bar.jpg");
   font-family: "Montserrat";
+  background-size: cover;
 }
 
 /******************************************
