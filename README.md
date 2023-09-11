@@ -6,6 +6,8 @@ You can:
 - input your alcohol of choice and use the next and previous button to cycle through the catalogue of drinks in that category.
 - search for a random drink.
 
+You can view the site <a href="https://craftedcocktails.netlify.app/">here</a>.
+
 <img width="1470" alt="CraftedCocktail" src="https://github.com/AndyMLearmouth92/Cocktail-generator/assets/108182837/4c230260-ce41-410b-b5de-32c88e64f907">
 
 # How It's Made:
