@@ -1,8 +1,10 @@
+// Allows the user to search for a cocktail.
 document.querySelector("#button").addEventListener("click", () => {
   removeIngredients();
   getDrink();
 });
 
+//Fetches cocktails from the API.
 function getDrink() {
   let drink = document.querySelector("input").value;
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
@@ -20,6 +22,7 @@ function getDrink() {
       extractMeasures(data.drinks[0]);
       showResults();
 
+      // Allows the user to toggle forward and backwards through the drinks array.
       let count = 0;
 
       document.querySelectorAll("#nextDrink").forEach((item) => {
@@ -71,6 +74,7 @@ function getDrink() {
     });
 }
 
+// Allows the user to search for a random drink. Different API call to the one above.
 document.querySelector("#button2").addEventListener("click", randomDrink);
 function randomDrink() {
   removeIngredients();
